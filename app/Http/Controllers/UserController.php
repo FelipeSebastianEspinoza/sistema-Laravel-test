@@ -5,13 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Http\Request;
 use App\User;
+use Facade\Ignition\QueryRecorder\Query;
 
 class UserController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $users = User::all();
-        return view('usuarios.index', ['users' => $users]);
+        $this->middleware('auth');
+    }
+    public function index(Request $request)
+    {
+
+        if ($request) {
+            $query = trim($request->get('search'));
+            $users = User::where('name', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'asc')
+                ->get();
+
+            return view('usuarios.index', ['users' => $users, 'search' => $query]);
+        }
+        //      $users = User::all();
+        //    return view('usuarios.index', ['users' => $users]);
     }
 
     public function create()
@@ -30,7 +44,7 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        //
+        return view('usuarios.show', ['user' => User::FindOrFail($id)]);
     }
     public function edit($id)
     {
@@ -52,6 +66,8 @@ class UserController extends Controller
     }
     public function destroy($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+        return redirect('/usuarios');
     }
 }

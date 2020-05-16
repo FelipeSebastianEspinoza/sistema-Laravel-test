@@ -18,7 +18,6 @@ class UserFormRequest extends FormRequest
 */
     /**
      * Get the validation rules that apply to the request.
-     * 'email' => 'required|min:4|unique:users,email,' . $this->users->email,
      * @return array
      */
     public function rules()
