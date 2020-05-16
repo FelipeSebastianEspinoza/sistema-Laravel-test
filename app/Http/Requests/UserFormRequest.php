@@ -26,8 +26,6 @@ class UserFormRequest extends FormRequest
 
         return [
             'name' => 'required',
-
-
         ];
     }
 }
