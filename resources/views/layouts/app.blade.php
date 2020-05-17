@@ -13,10 +13,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script src="dist/js/adminlte.js"></script>
+    <script src="{{ asset('dist/js/adminlte.js')}}"></script>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -65,7 +65,7 @@
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="dist/img/user1-128x128.jpg" alt="User Avatar"
+                                    <img src="{{ asset('dist/img/user1-128x128.jpg')}}" alt="User Avatar"
                                         class="img-size-50 mr-3 img-circle">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
@@ -83,7 +83,7 @@
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
+                                    <img src="{{ asset('dist/img/user8-128x128.jpg')}}" alt="User Avatar"
                                         class="img-size-50 img-circle mr-3">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
@@ -101,7 +101,7 @@
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="dist/img/user3-128x128.jpg" alt="User Avatar"
+                                    <img src="{{ asset('dist/img/user3-128x128.jpg')}}" alt="User Avatar"
                                         class="img-size-50 img-circle mr-3">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
@@ -220,21 +220,21 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="notas/todas"
+                                    <a href="{{url('notas/todas')}}"
                                             class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Todas</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="notas/favoritas"
+                                        <a href="{{url('notas/favoritas')}}"
                                             class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Favoritas</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="notas/archivadas"
+                                        <a href="{{url('notas/archivadas')}}"
                                             class="{{ Request::path() === 'notas/archivadas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Archivadas</p>
