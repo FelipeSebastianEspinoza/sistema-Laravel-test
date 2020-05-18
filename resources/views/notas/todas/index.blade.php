@@ -4,6 +4,9 @@
 <div class="container  ">
     <div class="row mx-auto ">
 
+@include('notas.todas.modal')
+
+
         @foreach ($notas as $obj)
         <div class="card mr-3" style="width: 18rem;">
             <div class="card-header">

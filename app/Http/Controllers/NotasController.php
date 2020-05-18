@@ -8,11 +8,26 @@ use App\Notas;
 
 class NotasController extends Controller
 {
-    public function todas()
+    public function index()
     {
-
-        return view('notas.todas', ['notas'=> Notas::all()]);
+        return view('notas.todas.index', ['notas' => Notas::all()]);
     }
+
+    public function store(Request $request)
+    {
+        $nota = new Notas();
+        $nota->titulo = request('titulo');
+        $nota->texto = request('texto');
+        $nota->user_id = auth()->id();
+
+        $nota->save();
+
+        return redirect('notas/todas');
+    }
+
+
+
+
     public function favoritas()
     {
         return view('notas.favoritas');
