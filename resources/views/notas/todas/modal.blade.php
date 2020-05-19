@@ -1,7 +1,7 @@
 <div class="container">
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-        data-whatever="@mdo">Open modal for @mdo
+        data-whatever="@mdo">crear nota
     </button>
 
 </div>
