@@ -37,7 +37,7 @@ class UserController extends Controller
         $usuario = new User();
         $usuario->name = request('name');
         $usuario->email = request('email');
-        $usuario->password = request('password');
+        $usuario->password = bcrypt(request('password'));
 
         $usuario->save();
         return redirect('/usuarios');

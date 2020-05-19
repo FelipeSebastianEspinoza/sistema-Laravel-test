@@ -5,8 +5,6 @@
 <div class="container  ">
     <div class="row mx-auto ">
 
-
-
         @foreach ($notas as $obj)
         @include('notas.todas.modal-delete')
         <div class="card mr-3" style="width: 18rem;">
@@ -24,15 +22,12 @@
                     </button>
                 </a>
 
-
-                    <button type="submit" data-toggle="modal" data-target="#modalEliminar-{{$obj->id}}"
-                        class="btn btn-danger btn-sm float-right mr-2">
-                        <i class="far fa-trash-alt"></i>
-                    </button>
-
+                <button type="submit" data-toggle="modal" data-target="#modalEliminar-{{$obj->id}}"
+                    class="btn btn-danger btn-sm float-right mr-2">
+                    <i class="far fa-trash-alt"></i>
+                </button>
 
             </div>
-
         </div>
         @endforeach
 

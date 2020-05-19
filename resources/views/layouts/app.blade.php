@@ -45,7 +45,7 @@
                 </ul>
 
                 <!-- SEARCH FORM -->
-         <!--       <form class="form-inline ml-3">
+                <!--       <form class="form-inline ml-3">
                     <div class="input-group input-group-sm">
                         <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search"
                             aria-label="Search">
@@ -205,17 +205,21 @@
                                 </a>
                             </li>
 
+                           @can('administrador')
+
+
                             <li class="nav-item">
                                 <a href="{{url('usuarios')}}"
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         Usuarios
-                                        <?php use App\User; $users_count = User::all()->count(); ?>
+                                        <?php $users_count = DB::table('users')->count(); ?>
                                         <span class="right badge badge-danger">{{ $users_count ?? '0' }}</span>
                                     </p>
                                 </a>
                             </li>
+                            @endcan
 
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
@@ -224,7 +228,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                    <a href="{{url('notas/todas')}}"
+                                        <a href="{{url('notas/todas')}}"
                                             class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Todas</p>

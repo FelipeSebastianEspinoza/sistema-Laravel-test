@@ -37,9 +37,6 @@ class NotasController extends Controller
         return redirect('notas/todas');
     }
 
-
-
-
     public function store(Request $request)
     {
         $nota = new Notas();
@@ -55,6 +52,9 @@ class NotasController extends Controller
     {
         return view('notas.todas.edit', ['nota' => Notas::findOrFail($id)]);
     }
+
+
+
 
 
 
