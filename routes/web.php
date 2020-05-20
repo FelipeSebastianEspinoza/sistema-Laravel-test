@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('usuarios', 'UserController');
+Route::resource('roles', 'RoleController');
 
 Route::resource('/notas/todas', 'NotasController');
 Route::get('/notas/favoritas', 'NotasController@favoritas');
