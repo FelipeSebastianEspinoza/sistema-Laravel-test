@@ -17,9 +17,9 @@
                 </div>
                 <div class="form-group">
                     <label for="select">Rol</label>
-                    <select name="rol" class="form-control">
-                        <option selected disabled>elige un rol para el usuario</option>
-                        @foreach ($roles as $rol)
+                    <select name="role" class="form-control">
+                        <option selected disabled>Elige un rol para el usuario</option>
+                        @foreach ($roles as $role)
                         <option value="{{$role->id}}">{{$role->name}}</option>
                         @endforeach
                     </select>

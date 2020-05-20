@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use Facade\Ignition\QueryRecorder\Query;
 
 class UserController extends Controller
@@ -30,7 +31,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('usuarios.create');
+        $roles = Role::all();
+        return view('usuarios.create', ['roles' => $roles]);
     }
     public function store(Request $request)
     {
@@ -40,6 +42,7 @@ class UserController extends Controller
         $usuario->password = bcrypt(request('password'));
 
         $usuario->save();
+        $usuario->asignarRol($request->get('role'));
         return redirect('/usuarios');
     }
     public function show($id)
