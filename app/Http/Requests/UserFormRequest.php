@@ -15,7 +15,7 @@ class UserFormRequest extends FormRequest
     {
         return true;
     }
-*/
+     */
     /**
      * Get the validation rules that apply to the request.
      * @return array
@@ -25,6 +25,8 @@ class UserFormRequest extends FormRequest
 
         return [
             'name' => 'required',
+            'password' => 'required|min:6|confirmed',
+            'imagen' => 'mimes:jpeg,bmp,png'
         ];
     }
 }

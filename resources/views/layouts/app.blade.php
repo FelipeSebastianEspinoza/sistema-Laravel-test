@@ -167,17 +167,17 @@
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
-                                alt="User Image">
-                        </div>
+
                         <div class="info">
                             <a href="#" class="d-block">
                                 @guest
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                                 @else
                                 {{ Auth::user()->name }}
-
+                                <div class="image">
+                                    <img src="{{asset('imagenes/'.Auth::user()->imagen)}}" class="img-circle elevation-2"
+                                        alt="User Image">
+                                </div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
                                     Cerrar Sesión
