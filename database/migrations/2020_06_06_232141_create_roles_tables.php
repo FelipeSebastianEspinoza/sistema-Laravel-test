@@ -39,6 +39,7 @@ class CreateRolesTables extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *

@@ -47,7 +47,6 @@ class User extends Authenticatable
     {
         $this->roles()->sync($role, false);
     }
-
     public function tieneRol()
     {
         return $this->roles->flatten()->pluck('name')->unique();

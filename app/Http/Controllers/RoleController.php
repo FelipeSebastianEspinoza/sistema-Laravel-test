@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Role;
 
+
 class RoleController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::all(); //se importa el modelo
         return view('roles.index', ['roles' => $roles]);
     }
 
@@ -25,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -36,10 +37,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = new Role();
-        $rol->name = request('name');
+        $role = new Role();
+        $role->name = request('name');
 
-        $rol->save();
+        $role->save();
         return redirect('roles');
     }
 

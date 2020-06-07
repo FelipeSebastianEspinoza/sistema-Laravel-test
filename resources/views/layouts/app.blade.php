@@ -44,18 +44,7 @@
                     </li>
                 </ul>
 
-                <!-- SEARCH FORM -->
-                <!--       <form class="form-inline ml-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>-->
+
 
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -69,7 +58,7 @@
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="{{ asset('dist/img/user1-128x128.jpg')}}" alt="User Avatar"
+                                    <img src="dist/img/user1-128x128.jpg" alt="User Avatar"
                                         class="img-size-50 mr-3 img-circle">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
@@ -87,7 +76,7 @@
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="{{ asset('dist/img/user8-128x128.jpg')}}" alt="User Avatar"
+                                    <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
                                         class="img-size-50 img-circle mr-3">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
@@ -105,7 +94,7 @@
                             <a href="#" class="dropdown-item">
                                 <!-- Message Start -->
                                 <div class="media">
-                                    <img src="{{ asset('dist/img/user3-128x128.jpg')}}" alt="User Avatar"
+                                    <img src="dist/img/user3-128x128.jpg" alt="User Avatar"
                                         class="img-size-50 img-circle mr-3">
                                     <div class="media-body">
                                         <h3 class="dropdown-item-title">
@@ -167,17 +156,16 @@
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
+                        <div class="image">
+                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
+                                alt="User Image">
+                        </div>
                         <div class="info">
                             <a href="#" class="d-block">
                                 @guest
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                                 @else
                                 {{ Auth::user()->name }}
-                                <div class="image">
-                                    <img src="{{asset('imagenes/'.Auth::user()->imagen)}}" class="img-circle elevation-2"
-                                        alt="User Image">
-                                </div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
                                     Cerrar Sesión
@@ -218,11 +206,12 @@
                                 </a>
                             </li>
                             @endcan
+
                             @can('administrador')
                             <li class="nav-item">
                                 <a href="{{url('roles')}}"
-                                    class="{{ Request::path() === 'roles' ? 'nav-link active' : 'nav-link' }}">
-                                    <i class="nav-icon fas fa-users"></i>
+                                    class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
+                                    <i class="nav-icon fas fa-address-book"></i>
                                     <p>
                                         Roles
                                     </p>
@@ -237,21 +226,21 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{url('notas/todas')}}"
+                                        <a href="notas/todas"
                                             class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Todas</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{url('notas/favoritas')}}"
+                                        <a href="notas/favoritas"
                                             class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Favoritas</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{url('notas/archivadas')}}"
+                                        <a href="notas/archivadas"
                                             class="{{ Request::path() === 'notas/archivadas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Archivadas</p>
@@ -278,6 +267,7 @@
                 <!-- Main content -->
                 <section class="content">
                     @yield('content')
+
                 </section>
                 <!-- /.content -->
             </div>

@@ -6,8 +6,8 @@
 
 </div>
 
-{!! Form::open(['url' => 'notas/todas']) !!}
-{{ Form::token() }}
+{!! Form::open(['url' => 'notas/todas']) !!}  <!-- carpeta/subcarpeta -->
+{{ Form::token() }} 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">

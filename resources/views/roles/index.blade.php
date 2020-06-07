@@ -1,11 +1,10 @@
-@extends('layouts.usersearch')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row">
         <h2>
             Roles de usuarios
-
         </h2>
         @include('roles.modal')
 

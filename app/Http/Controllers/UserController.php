@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserFormRequest;
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\UserFormRequest;
 use App\Role;
-use Facade\Ignition\QueryRecorder\Query;
 
 class UserController extends Controller
 {
@@ -14,64 +13,58 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index(Request $request)
     {
-
         if ($request) {
             $query = trim($request->get('search'));
             $users = User::where('name', 'LIKE', '%' . $query . '%')
                 ->orderBy('id', 'asc')
-                ->get();
-
+                ->paginate(10);
             return view('usuarios.index', ['users' => $users, 'search' => $query]);
         }
-        //      $users = User::all();
-        //    return view('usuarios.index', ['users' => $users]);
     }
 
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::all(); //se importa el modelo
         return view('usuarios.create', ['roles' => $roles]);
     }
-    public function store(UserFormRequest $request)
+
+
+    public function store(Request $request)
     {
         $usuario = new User();
+
         $usuario->name = request('name');
+        $usuario->email = request('email');
         $usuario->password = bcrypt(request('password'));
-        $usuario->email = $request->get('email'); //hace el request para haga el update pero al pasar a UserFormRequest no existe su regla ya que se hace en el controlador
-
-        if ($request->hasFile('imagen')) {
-            $file = $request->imagen;
-            $file->move(public_path() . '/imagenes', $file->getClientOriginalName());
-            $usuario->imagen = $file->getClientOriginalName();
-        }
-
-
-
-
-        $this->validate($request, [
-            'email' => 'unique:users,email,' . $usuario->id
-        ]);
 
         $usuario->save();
-        $usuario->asignarRol($request->get('role'));
+        $usuario->asignarRol($request->get('rol'));
+
         return redirect('/usuarios');
     }
+
+
     public function show($id)
     {
-        return view('usuarios.show', ['user' => User::FindOrFail($id)]);
+        return view('usuarios.show', ['user' => User::findOrFail($id)]);
     }
+
+
     public function edit($id)
     {
-        return view('usuarios.edit', ['user' => User::FindOrFail($id)]);
+        return view('usuarios.edit', ['user' => User::findOrFail($id)]);
     }
+
+
     public function update(UserFormRequest $request, $id)
     {
-        $usuario = User::FindOrFail($id);
+        $usuario = User::findOrFail($id);
 
         $usuario->name = $request->get('name');
-        $usuario->email = $request->get('email'); //hace el request para haga el update pero al pasar a UserFormRequest no existe su regla ya que se hace en el controlador
+        $usuario->email = $request->get('email');
 
         $this->validate($request, [
             'email' => 'unique:users,email,' . $usuario->id
@@ -80,10 +73,12 @@ class UserController extends Controller
         $usuario->update();
         return redirect('/usuarios');
     }
+
     public function destroy($id)
     {
         $usuario = User::findOrFail($id);
         $usuario->delete();
+
         return redirect('/usuarios');
     }
 }
