@@ -43,6 +43,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
                 <th scope="col">Rol</th>
+                <th scope="col">Imagen</th>
                 @can('administrador')
                 <th>
                 </th>
@@ -58,11 +59,23 @@
                 <td>{{$user->email}}</td>
                 <td>
                     @foreach ($user->roles as $role)
-                        {{$role->name}}
+                    {{$role->name}}
                     @endforeach
-                
+
                 </td>
                 @can('administrador')
+
+                @if ($user->imagen==null)
+                <td>
+
+                </td>
+                @else
+                <td>
+                    <img src="{{asset('imagenes/'.$user->imagen)}}" alt="{{$user->imagen}}" height="50px" width="50px">
+                </td>
+                @endif
+
+
                 <td>
 
                     <a href="{{ route('usuarios.show', $user->id) }}">

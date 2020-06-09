@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\UserFormRequest;
 use App\Role;
+use App\Http\Requests\UserEditFormRequest;
 
 class UserController extends Controller
 {
@@ -66,12 +67,15 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('usuarios.edit', ['user' => User::findOrFail($id)]);
+        $roles = Role::all(); //se importa el modelo
+
+        return view('usuarios.edit', ['roles' => $roles], ['user' => User::findOrFail($id)]);
     }
 
 
-    public function update(UserFormRequest $request, $id)
+    public function update(UserEditFormRequest $request, $id)
     {
+
         $usuario = User::findOrFail($id);
 
         $usuario->name = $request->get('name');
@@ -80,6 +84,22 @@ class UserController extends Controller
         $this->validate($request, [
             'email' => 'unique:users,email,' . $usuario->id
         ]);
+        if ($request->hasFile('imagen')) {
+            $file = $request->imagen;
+            $file->move(public_path() . '/imagenes', $file->getClientOriginalName());
+            $usuario->imagen = $file->getClientOriginalName();
+        }
+
+        $pass = $request->get('password');
+        if ($pass != null) {
+            $usuario->password = bcrypt($request->get('password'));
+        }
+
+        $role = $usuario->roles;
+        if (count($role) > 0) {
+            $role_id = $role[0]->id;
+        }
+        User::find($id)->roles()->updateExistingPivot($role_id, ['role_id' => $request->get('rol')]);
 
         $usuario->update();
         return redirect('/usuarios');
