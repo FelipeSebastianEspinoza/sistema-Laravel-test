@@ -2,9 +2,7 @@
 
 namespace Facade\Ignition\Solutions;
 
-use Facade\IgnitionContracts\RunnableSolution;
 use Facade\IgnitionContracts\Solution;
-use Illuminate\Support\Facades\Blade;
 
 class SuggestCorrectVariableNameSolution implements Solution
 {
@@ -13,6 +11,9 @@ class SuggestCorrectVariableNameSolution implements Solution
 
     /** @var string */
     private $viewFile;
+
+    /** @var string|null */
+    private $suggested;
 
     public function __construct($variableName = null, $viewFile = null, $suggested = null)
     {
@@ -33,8 +34,6 @@ class SuggestCorrectVariableNameSolution implements Solution
 
     public function getSolutionDescription(): string
     {
-        $path = str_replace(base_path().'/', '', $this->viewFile);
-
         return "Did you mean `$$this->suggested`?";
     }
 
